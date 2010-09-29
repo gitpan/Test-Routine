@@ -1,0 +1,64 @@
+
+use strict;
+use warnings;
+
+
+
+use ExtUtils::MakeMaker 6.31;
+
+
+
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'composable units of assertion',
+  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
+  'BUILD_REQUIRES' => {},
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Test-Routine',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Test::Routine',
+  'PREREQ_PM' => {
+    'Carp' => '0',
+    'Class::MOP' => '0',
+    'Moose' => '0',
+    'Moose::Exporter' => '0',
+    'Moose::Meta::Class' => '0',
+    'Moose::Meta::Method' => '0',
+    'Moose::Role' => '0',
+    'Moose::Util' => '0',
+    'Scalar::Util' => '0',
+    'Sub::Exporter' => '0',
+    'Sub::Exporter::Util' => '0',
+    'Test::More' => '0',
+    'namespace::autoclean' => '0',
+    'namespace::clean' => '0'
+  },
+  'VERSION' => '0.001',
+  'test' => {
+    'TESTS' => 't/*.t t/todo/*.t'
+  }
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+
