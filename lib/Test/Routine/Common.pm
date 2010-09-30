@@ -1,6 +1,6 @@
 package Test::Routine::Common;
 BEGIN {
-  $Test::Routine::Common::VERSION = '0.001';
+  $Test::Routine::Common::VERSION = '0.002';
 }
 use Moose::Role;
 # ABSTRACT: a role composed by all Test::Routine roles
@@ -28,7 +28,7 @@ Test::Routine::Common - a role composed by all Test::Routine roles
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 OVERVIEW
 

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine::Runner;
 BEGIN {
-  $Test::Routine::Runner::VERSION = '0.001';
+  $Test::Routine::Runner::VERSION = '0.002';
 }
 # ABSTRACT: tools for running Test::Routine tests
 
@@ -42,7 +42,7 @@ sub _curry_tester {
 sub run_me {
   my ($class, $desc, $arg) = @_;
 
-  if (@_ == 2 and (reftype $desc // '') eq 'HASH') {
+  if (@_ == 2 and (reftype $desc || '') eq 'HASH') {
     ($desc, $arg) = (undef, $arg);
   }
 
@@ -58,7 +58,7 @@ sub _invocant_for {
   confess "can't supply object and args for running tests"
     if blessed $inv and $arg;
 
-  $arg //= {};
+  $arg = {} unless defined $arg;
 
   return $inv if blessed $inv;
 
@@ -93,7 +93,9 @@ sub run_tests {
 
   my @caller = caller($UPLEVEL);
 
-  $desc //= sprintf 'tests from %s, line %s', $caller[1], $caller[2];
+  $desc = defined($desc)
+        ? $desc
+        : sprintf 'tests from %s, line %s', $caller[1], $caller[2];
 
   my $thing = $class->_invocant_for($inv, $arg);
 
@@ -125,7 +127,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 OVERVIEW
 
