@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 BEGIN {
-  $Test::Routine::VERSION = '0.002';
+  $Test::Routine::VERSION = '0.003';
 }
 # ABSTRACT: composable units of assertion
 
@@ -74,14 +74,14 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
   # mytest.t
   use Test::More;
   use Test::Routine;
-  use Test::Routine::Runner;
+  use Test::Routine::Util;
 
   has fixture => (
     is   => 'ro',
@@ -191,7 +191,7 @@ example, to call an attribute clearer before each test, you could add:
 
 =head3 Running Tests
 
-To run tests, you will need to use L<Test::Routine::Runner>, which will provide
+To run tests, you will need to use L<Test::Routine::Util>, which will provide
 two functions for running tests: C<run_tests> and C<run_me>.  The former is
 given a set of packages to compose and run as tests.  The latter runs the
 caller, assuming it to be a test routine.
@@ -221,7 +221,7 @@ file.  The following is a valid, trivial use of Test::Routine:
 
   use Test::More;
   use Test::Routine;
-  use Test::Routine::Runner;
+  use Test::Routine::Util;
 
   test demo_test => sub { pass("everything is okay") };
 

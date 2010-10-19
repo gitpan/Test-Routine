@@ -28,6 +28,8 @@ my %WriteMakefileArgs = (
     'Moose::Meta::Method' => '0',
     'Moose::Role' => '0',
     'Moose::Util' => '0',
+    'Moose::Util::TypeConstraints' => '0',
+    'Params::Util' => '0',
     'Scalar::Util' => '0',
     'Sub::Exporter' => '0',
     'Sub::Exporter::Util' => '0',
@@ -35,9 +37,9 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0',
     'namespace::clean' => '0'
   },
-  'VERSION' => '0.002',
+  'VERSION' => '0.003',
   'test' => {
-    'TESTS' => 't/*.t t/todo/*.t'
+    'TESTS' => 't/*.t t/demo/*.t t/todo/*.t'
   }
 );
 
