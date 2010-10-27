@@ -2,7 +2,8 @@
 abstract: 'composable units of assertion'
 author:
   - 'Ricardo Signes <rjbs@cpan.org>'
-build_requires: {}
+build_requires:
+  Test::More: 0.96
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
@@ -31,7 +32,7 @@ requires:
   namespace::clean: 0
 resources:
   repository: git://git.codesimply.com/Test-Routine.git
-version: 0.003
+version: 0.004
 x_Dist_Zilla:
   plugins:
     -
@@ -118,6 +119,14 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Repository
       name: '@Filter/Repository'
       version: 0.14
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: requires
+      name: '@Filter/TestMoreWithSubtests'
+      version: 4.102342
     -
       class: Dist::Zilla::Plugin::PodWeaver
       name: '@Filter/PodWeaver'

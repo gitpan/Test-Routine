@@ -1,6 +1,6 @@
 package Test::Routine::Runner;
 BEGIN {
-  $Test::Routine::Runner::VERSION = '0.003';
+  $Test::Routine::Runner::VERSION = '0.004';
 }
 use Moose;
 # ABSTRACT: tools for running Test::Routine tests
@@ -87,7 +87,7 @@ sub run {
   # to not look stupid. -- rjbs, 2010-09-28
   my @ordered_tests = sort {
          $a->_origin->{file} cmp $b->_origin->{file}
-      || $a->_origin->{nth}  <=> $a->_origin->{nth}
+      || $a->_origin->{nth}  <=> $b->_origin->{nth}
   } @tests;
 
   Test::More::subtest($self->description, sub {
@@ -109,7 +109,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 OVERVIEW
 
