@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine::Compositor;
 BEGIN {
-  $Test::Routine::Compositor::VERSION = '0.004';
+  $Test::Routine::Compositor::VERSION = '0.005';
 }
 
 use Carp qw(confess);
@@ -83,7 +83,7 @@ Test::Routine::Compositor
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 AUTHOR
 

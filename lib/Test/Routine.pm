@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 BEGIN {
-  $Test::Routine::VERSION = '0.004';
+  $Test::Routine::VERSION = '0.005';
 }
 # ABSTRACT: composable units of assertion
 
@@ -74,7 +74,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -113,7 +113,7 @@ B<The interface of Test::Routine is still open to some changes.>
     is( $self->fixture->things_done, 1, "we have done one thing already");
   };
 
-  run_tests;
+  test_me;
   done_testing;
 
 =head1 DESCRIPTION
