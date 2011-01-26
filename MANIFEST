@@ -6,7 +6,6 @@ META.yml
 Makefile.PL
 README
 dist.ini
-inc/BuildDemo.pm
 lib/Test/Routine.pm
 lib/Test/Routine/Common.pm
 lib/Test/Routine/Compositor.pm
