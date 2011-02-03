@@ -2,8 +2,9 @@ use strict;
 use warnings;
 package Test::Routine::Compositor;
 BEGIN {
-  $Test::Routine::Compositor::VERSION = '0.006';
+  $Test::Routine::Compositor::VERSION = '0.007';
 }
+# ABSTRACT: the tool for turning test routines into runnable classes
 
 use Carp qw(confess);
 use Class::MOP;
@@ -79,11 +80,11 @@ __END__
 
 =head1 NAME
 
-Test::Routine::Compositor
+Test::Routine::Compositor - the tool for turning test routines into runnable classes
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 AUTHOR
 

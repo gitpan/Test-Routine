@@ -3,11 +3,13 @@ abstract: 'composable units of assertion'
 author:
   - 'Ricardo Signes <rjbs@cpan.org>'
 build_requires:
+  Test::Fatal: 0
   Test::More: 0.96
+  t::lib::NoGood: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.110330'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -32,7 +34,7 @@ requires:
   namespace::clean: 0
 resources:
   repository: git://git.codesimply.com/Test-Routine.git
-version: 0.006
+version: 0.007
 x_Dist_Zilla:
   plugins:
     -
@@ -94,7 +96,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::NextVersion
       name: '@Filter/Git::NextVersion'
-      version: 1.103520
+      version: 1.110330
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Filter/PkgVersion'
@@ -134,19 +136,19 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::Check
       name: '@Filter/@Git/Check'
-      version: 1.103520
+      version: 1.110330
     -
       class: Dist::Zilla::Plugin::Git::Commit
       name: '@Filter/@Git/Commit'
-      version: 1.103520
+      version: 1.110330
     -
       class: Dist::Zilla::Plugin::Git::Tag
       name: '@Filter/@Git/Tag'
-      version: 1.103520
+      version: 1.110330
     -
       class: Dist::Zilla::Plugin::Git::Push
       name: '@Filter/@Git/Push'
-      version: 1.103520
+      version: 1.110330
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: AutoPrereqs

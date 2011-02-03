@@ -12,7 +12,9 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'composable units of assertion',
   'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
   'BUILD_REQUIRES' => {
-    'Test::More' => '0.96'
+    'Test::Fatal' => '0',
+    'Test::More' => '0.96',
+    't::lib::NoGood' => '0'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
@@ -39,7 +41,7 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0',
     'namespace::clean' => '0'
   },
-  'VERSION' => '0.006',
+  'VERSION' => '0.007',
   'test' => {
     'TESTS' => 't/*.t t/demo/*.t t/todo/*.t'
   }

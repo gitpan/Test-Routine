@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 BEGIN {
-  $Test::Routine::VERSION = '0.006';
+  $Test::Routine::VERSION = '0.007';
 }
 # ABSTRACT: composable units of assertion
 
@@ -42,7 +42,7 @@ sub test {
   # Test::Routine::Test, but since this is a test library, I'd actually like to
   # keep prerequisites fairly limited. -- rjbs, 2010-09-28
   if (exists $arg->{desc}) {
-    Carp::confess "can't supply both 'desc' and 'description'"
+    Carp::croak "can't supply both 'desc' and 'description'"
       if exists $arg->{description};
     $arg->{description} = delete $arg->{desc};
   }
@@ -60,6 +60,9 @@ sub test {
     _origin      => \%origin,
   );
 
+  Carp::croak "can't have two tests with the same name ($name)"
+    if $class->get_method($name);
+
   $class->add_method($name => $method);
 }
 
@@ -74,7 +77,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
