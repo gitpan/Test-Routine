@@ -42,8 +42,7 @@
       "test" : {
          "requires" : {
             "Test::Fatal" : 0,
-            "Test::More" : "0.96",
-            "t::lib::NoGood" : 0
+            "Test::More" : "0.96"
          }
       }
    },
@@ -54,7 +53,7 @@
          "url" : "git://git.codesimply.com/Test-Routine.git"
       }
    },
-   "version" : "0.007",
+   "version" : "0.008",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

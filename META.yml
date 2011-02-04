@@ -5,7 +5,6 @@ author:
 build_requires:
   Test::Fatal: 0
   Test::More: 0.96
-  t::lib::NoGood: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
@@ -34,7 +33,7 @@ requires:
   namespace::clean: 0
 resources:
   repository: git://git.codesimply.com/Test-Routine.git
-version: 0.007
+version: 0.008
 x_Dist_Zilla:
   plugins:
     -
