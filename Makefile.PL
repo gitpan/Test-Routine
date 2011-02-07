@@ -40,7 +40,7 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0',
     'namespace::clean' => '0'
   },
-  'VERSION' => '0.008',
+  'VERSION' => '0.009',
   'test' => {
     'TESTS' => 't/*.t t/demo/*.t t/todo/*.t'
   }

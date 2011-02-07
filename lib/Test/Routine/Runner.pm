@@ -1,6 +1,6 @@
 package Test::Routine::Runner;
 BEGIN {
-  $Test::Routine::Runner::VERSION = '0.008';
+  $Test::Routine::Runner::VERSION = '0.009';
 }
 use Moose;
 # ABSTRACT: tools for running Test::Routine tests
@@ -109,7 +109,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 OVERVIEW
 
