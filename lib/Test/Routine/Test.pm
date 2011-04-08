@@ -1,24 +1,13 @@
 package Test::Routine::Test;
 BEGIN {
-  $Test::Routine::Test::VERSION = '0.009';
+  $Test::Routine::Test::VERSION = '0.010';
 }
 use Moose;
 extends 'Moose::Meta::Method';
 # ABSTRACT: a test method in a Test::Routine role
 
+with 'Test::Routine::Test::Role';
 
-has description => (
-  is   => 'ro',
-  isa  => 'Str',
-  lazy => 1,
-  default => sub { $_[0]->name },
-);
-
-has _origin => (
-  is  => 'ro',
-  isa => 'HashRef',
-  required => 1,
-);
 
 1;
 
@@ -31,7 +20,7 @@ Test::Routine::Test - a test method in a Test::Routine role
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 OVERVIEW
 

@@ -1,6 +1,6 @@
 package Test::Routine::Runner;
 BEGIN {
-  $Test::Routine::Runner::VERSION = '0.009';
+  $Test::Routine::Runner::VERSION = '0.010';
 }
 use Moose;
 # ABSTRACT: tools for running Test::Routine tests
@@ -80,7 +80,7 @@ sub run {
 
   my $thing = $self->test_instance;
 
-  my @tests = grep { $_->isa('Test::Routine::Test') }
+  my @tests = grep { Moose::Util::does_role($_, 'Test::Routine::Test::Role') }
               $thing->meta->get_all_methods;
 
   # As a side note, I wonder whether there is any way to format the code below
@@ -109,7 +109,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 OVERVIEW
 

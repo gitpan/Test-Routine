@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 BEGIN {
-  $Test::Routine::VERSION = '0.009';
+  $Test::Routine::VERSION = '0.010';
 }
 # ABSTRACT: composable units of assertion
 
@@ -11,7 +11,7 @@ use Moose::Exporter;
 
 use Moose::Role ();
 use Moose::Util ();
-use Scalar::Util ();
+use Scalar::Util qw(blessed);
 
 use Test::Routine::Common;
 use Test::Routine::Test;
@@ -35,8 +35,15 @@ my $i = 0;
 sub test {
   my $caller = shift;
   my $name   = shift;
-  my $arg    = Params::Util::_HASH0($_[0]) ? { %{shift()} } : {};
-  my $body   = shift;
+  my ($arg, $body);
+  if (blessed($_[0]) && $_[0]->isa('Class::MOP::Method')) {
+    $arg  = {};
+    $body = shift;
+  }
+  else {
+    $arg  = Params::Util::_HASH0($_[0]) ? { %{shift()} } : {};
+    $body = shift;
+  }
 
   # This could really have been done with a MooseX like InitArgs or Alias in
   # Test::Routine::Test, but since this is a test library, I'd actually like to
@@ -52,13 +59,28 @@ sub test {
   my %origin;
   @origin{qw(file line nth)} = ((caller(0))[1,2], $i++);
 
-  my $method = Test::Routine::Test->wrap(
-    %$arg,
-    name => $name,
-    body => $body,
-    package_name => $caller,
-    _origin      => \%origin,
-  );
+  my $method;
+  if (blessed($body) && $body->isa('Class::MOP::Method')) {
+    my $method_metaclass = Moose::Util::with_traits(
+      blessed($body), 'Test::Routine::Test::Role'
+    );
+    $method = $method_metaclass->meta->rebless_instance(
+      $body,
+      %$arg,
+      name         => $name,
+      package_name => $caller,
+      _origin      => \%origin,
+    );
+  }
+  else {
+    $method = Test::Routine::Test->wrap(
+      %$arg,
+      name => $name,
+      body => $body,
+      package_name => $caller,
+      _origin      => \%origin,
+    );
+  }
 
   Carp::croak "can't have two tests with the same name ($name)"
     if $class->get_method($name);
@@ -77,7 +99,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 

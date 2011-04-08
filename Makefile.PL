@@ -12,7 +12,10 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'composable units of assertion',
   'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
   'BUILD_REQUIRES' => {
+    'MooseX::Method::Signatures' => '0',
+    'Test::Builder::Tester' => '0',
     'Test::Fatal' => '0',
+    'Test::Moose' => '0',
     'Test::More' => '0.96'
   },
   'CONFIGURE_REQUIRES' => {
@@ -40,7 +43,7 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0',
     'namespace::clean' => '0'
   },
-  'VERSION' => '0.009',
+  'VERSION' => '0.010',
   'test' => {
     'TESTS' => 't/*.t t/demo/*.t t/todo/*.t'
   }
