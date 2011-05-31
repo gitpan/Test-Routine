@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 BEGIN {
-  $Test::Routine::VERSION = '0.010';
+  $Test::Routine::VERSION = '0.011';
 }
 # ABSTRACT: composable units of assertion
 
@@ -36,11 +36,11 @@ sub test {
   my $caller = shift;
   my $name   = shift;
   my ($arg, $body);
+
   if (blessed($_[0]) && $_[0]->isa('Class::MOP::Method')) {
     $arg  = {};
     $body = shift;
-  }
-  else {
+  } else {
     $arg  = Params::Util::_HASH0($_[0]) ? { %{shift()} } : {};
     $body = shift;
   }
@@ -53,6 +53,9 @@ sub test {
       if exists $arg->{description};
     $arg->{description} = delete $arg->{desc};
   }
+
+  $arg->{description} = $name unless defined $arg->{description};
+  $name =~ s/(?:::|')/_/g;
 
   my $class = Moose::Meta::Class->initialize($caller);
 
@@ -99,7 +102,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 

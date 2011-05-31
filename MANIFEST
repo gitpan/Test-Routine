@@ -24,3 +24,4 @@ t/lib/NoGood.pm
 t/mxms.t
 t/release-pod-syntax.t
 t/todo/mxrp.t
+t/unsafe-name.t
