@@ -58,7 +58,7 @@
          "web" : "http://github.com/rjbs/Test-Routine"
       }
    },
-   "version" : "0.011",
+   "version" : "0.012",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

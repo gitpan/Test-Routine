@@ -1,5 +1,9 @@
 Revision history for Test-Routine
 
+0.012     2011-06-01 22:09:50 America/New_York
+
+          reject test names that conflict with Moose::Object methods
+
 0.011     2011-05-31 10:49:59 America/New_York
 
           install tests with package separators in their name under munged
