@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 package Test::Routine::Compositor;
-BEGIN {
-  $Test::Routine::Compositor::VERSION = '0.012';
+{
+  $Test::Routine::Compositor::VERSION = '0.013';
 }
 # ABSTRACT: the tool for turning test routines into runnable classes
 
@@ -84,7 +84,7 @@ Test::Routine::Compositor - the tool for turning test routines into runnable cla
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 AUTHOR
 
