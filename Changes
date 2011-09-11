@@ -1,5 +1,9 @@
 Revision history for Test-Routine
 
+0.014     2011-09-11 08:47:21 America/New_York
+          fix a nit in the SYNOPSIS: the runner is run_me not test_me (thanks,
+          Alex White!)
+
 0.013     2011-09-08 16:46:01 America/New_York
 
           MooseX::Method::Signatures is not a prereq, it's optionally used in

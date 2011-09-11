@@ -1,6 +1,6 @@
 package Test::Routine::Test;
 {
-  $Test::Routine::Test::VERSION = '0.013';
+  $Test::Routine::Test::VERSION = '0.014';
 }
 use Moose;
 extends 'Moose::Meta::Method';
@@ -20,7 +20,7 @@ Test::Routine::Test - a test method in a Test::Routine role
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 OVERVIEW
 

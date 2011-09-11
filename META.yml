@@ -38,7 +38,7 @@ requires:
 resources:
   homepage: https://github.com/rjbs/Test-Routine
   repository: https://github.com/rjbs/Test-Routine.git
-version: 0.013
+version: 0.014
 x_Dist_Zilla:
   plugins:
     -

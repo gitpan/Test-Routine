@@ -1,6 +1,6 @@
 package Test::Routine::Test::Role;
 {
-  $Test::Routine::Test::Role::VERSION = '0.013';
+  $Test::Routine::Test::Role::VERSION = '0.014';
 }
 use Moose::Role;
 
@@ -30,7 +30,7 @@ Test::Routine::Test::Role
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 AUTHOR
 
