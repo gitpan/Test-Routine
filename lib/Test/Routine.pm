@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 {
-  $Test::Routine::VERSION = '0.014';
+  $Test::Routine::VERSION = '0.015';
 }
 # ABSTRACT: composable units of assertion
 
@@ -105,7 +105,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 SYNOPSIS
 

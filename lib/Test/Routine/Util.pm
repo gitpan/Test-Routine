@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine::Util;
 {
-  $Test::Routine::Util::VERSION = '0.014';
+  $Test::Routine::Util::VERSION = '0.015';
 }
 # ABSTRACT: helpful exports for dealing with test routines
 
@@ -39,7 +39,7 @@ sub run_me {
   my ($class, $desc, $arg) = @_;
 
   if (@_ == 2 and (reftype $desc || '') eq 'HASH') {
-    ($desc, $arg) = (undef, $arg);
+    ($desc, $arg) = (undef, $desc);
   }
 
   my $caller = caller($UPLEVEL);
@@ -81,7 +81,7 @@ Test::Routine::Util - helpful exports for dealing with test routines
 
 =head1 VERSION
 
-version 0.014
+version 0.015
 
 =head1 OVERVIEW
 
