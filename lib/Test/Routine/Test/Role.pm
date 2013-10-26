@@ -1,6 +1,6 @@
 package Test::Routine::Test::Role;
 {
-  $Test::Routine::Test::Role::VERSION = '0.015';
+  $Test::Routine::Test::Role::VERSION = '0.016';
 }
 # ABSTRACT: role providing test attributes
 use Moose::Role;
@@ -23,7 +23,10 @@ no Moose::Role;
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -31,7 +34,7 @@ Test::Routine::Test::Role - role providing test attributes
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 AUTHOR
 
@@ -45,4 +48,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

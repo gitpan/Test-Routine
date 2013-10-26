@@ -2,12 +2,12 @@ use strict;
 use warnings;
 package Test::Routine::Compositor;
 {
-  $Test::Routine::Compositor::VERSION = '0.015';
+  $Test::Routine::Compositor::VERSION = '0.016';
 }
 # ABSTRACT: the tool for turning test routines into runnable classes
 
 use Carp qw(confess);
-use Class::MOP;
+use Class::Load;
 use Moose::Meta::Class;
 use Params::Util qw(_CLASS);
 use Scalar::Util qw(blessed);
@@ -39,7 +39,7 @@ sub _class_for {
   my @roles;
 
   for my $item (@$inv) {
-    Class::MOP::load_class($item);
+    Class::Load::load_class($item);
     my $target = $item->meta->isa('Moose::Meta::Class') ? \@bases
                : $item->meta->isa('Moose::Meta::Role')  ? \@roles
                : confess "can't run tests for this weird thing: $item";
@@ -76,7 +76,10 @@ sub instance_builder {
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -84,7 +87,7 @@ Test::Routine::Compositor - the tool for turning test routines into runnable cla
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 AUTHOR
 
@@ -98,4 +101,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

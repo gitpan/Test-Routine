@@ -14,6 +14,7 @@ lib/Test/Routine/Runner.pm
 lib/Test/Routine/Test.pm
 lib/Test/Routine/Test/Role.pm
 lib/Test/Routine/Util.pm
+t/000-report-versions-tiny.t
 t/demo/01-demo.t
 t/demo/02-simple.t
 t/demo/03-advice.t
@@ -22,6 +23,7 @@ t/demo/05-multiple.t
 t/dupe.t
 t/lib/NoGood.pm
 t/mxms.t
-t/release-pod-syntax.t
 t/todo/mxrp.t
 t/unsafe-name.t
+xt/release/changes_has_content.t
+xt/release/pod-syntax.t

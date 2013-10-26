@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 {
-  $Test::Routine::VERSION = '0.015';
+  $Test::Routine::VERSION = '0.016';
 }
 # ABSTRACT: composable units of assertion
 
@@ -97,7 +97,10 @@ sub test {
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -105,11 +108,9 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
-
-B<The interface of Test::Routine is still open to some changes.>
 
   # mytest.t
   use Test::More;
@@ -283,4 +284,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -1,6 +1,6 @@
 package Test::Routine::Test;
 {
-  $Test::Routine::Test::VERSION = '0.015';
+  $Test::Routine::Test::VERSION = '0.016';
 }
 use Moose;
 extends 'Moose::Meta::Method';
@@ -12,7 +12,10 @@ with 'Test::Routine::Test::Role';
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -20,7 +23,7 @@ Test::Routine::Test - a test method in a Test::Routine role
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 OVERVIEW
 
@@ -40,4 +43,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
