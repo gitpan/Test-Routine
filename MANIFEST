@@ -22,6 +22,7 @@ t/demo/04-misc.t
 t/demo/05-multiple.t
 t/dupe.t
 t/lib/NoGood.pm
+t/method-filter.t
 t/mxms.t
 t/todo/mxrp.t
 t/unsafe-name.t

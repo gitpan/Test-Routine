@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 {
-  $Test::Routine::VERSION = '0.016';
+  $Test::Routine::VERSION = '0.017';
 }
 # ABSTRACT: composable units of assertion
 
@@ -108,7 +108,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
@@ -271,6 +271,47 @@ call them as many times, with as many different arguments, as you like.  Since
 Test::Routine can't know how many times you'll call different test routines,
 you are responsible for calling C<L<done_testing|Test::More/done_testing>> when
 you're done testing.
+
+=head4 Running individual tests
+
+If you only want to run a subset of the tests, you can set the
+C<TEST_METHOD> environment variable to a regular expression that matches
+the names of the tests you want to run.
+
+For example, to run just the test named C<customer profile> in the
+C<MyTests> class.
+
+  use Test::More;
+  use Test::Routine::Util;
+
+  $ENV{TEST_METHOD} = 'customer profile';
+  run_tests('one test', 'MyTests');
+  done_testing;
+
+To run all tests with C<customer> in the name:
+
+  use Test::More;
+  use Test::Routine::Util;
+
+  $ENV{TEST_METHOD}= '.*customer.*';
+  run_tests('some tests', 'MyTests');
+  done_testing;
+
+If you specify an invalid regular expression, your tests will not be
+run:
+
+  use Test::More;
+  use Test::Routine::Util
+
+  $ENV{TEST_METHOD} = 'C++'
+  run_tests('invalid', 'MyTests');
+  done_testing;
+
+When you run it:
+
+      1..0
+      # No tests run!
+  not ok 1 - No tests run for subtest "invalid"
 
 =head1 AUTHOR
 

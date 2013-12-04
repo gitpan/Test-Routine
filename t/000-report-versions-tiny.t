@@ -66,6 +66,7 @@ eval { $v .= pmver('Test::Builder::Tester','any version') };
 eval { $v .= pmver('Test::Fatal','any version') };
 eval { $v .= pmver('Test::Moose','any version') };
 eval { $v .= pmver('Test::More','0.96') };
+eval { $v .= pmver('Try::Tiny','any version') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 eval { $v .= pmver('namespace::clean','any version') };
 eval { $v .= pmver('strict','any version') };
