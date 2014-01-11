@@ -2,9 +2,14 @@ use strict;
 use warnings;
 package Test::Routine::Manual::Demo;
 {
-  $Test::Routine::Manual::Demo::VERSION = '0.017';
+  $Test::Routine::Manual::Demo::VERSION = '0.018';
 }
 # ABSTRACT: a walkthrough, in code, of Test::Routine
+
+
+
+
+
 
 
 1;
@@ -21,7 +26,7 @@ Test::Routine::Manual::Demo - a walkthrough, in code, of Test::Routine
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 The Demo
 

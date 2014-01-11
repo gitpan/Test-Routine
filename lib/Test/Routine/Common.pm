@@ -1,9 +1,15 @@
 package Test::Routine::Common;
 {
-  $Test::Routine::Common::VERSION = '0.017';
+  $Test::Routine::Common::VERSION = '0.018';
 }
 use Moose::Role;
 # ABSTRACT: a role composed by all Test::Routine roles
+
+
+
+
+
+
 
 
 use Test::More ();
@@ -31,7 +37,7 @@ Test::Routine::Common - a role composed by all Test::Routine roles
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 OVERVIEW
 

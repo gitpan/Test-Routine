@@ -2,9 +2,20 @@ use strict;
 use warnings;
 package Test::Routine::Util;
 {
-  $Test::Routine::Util::VERSION = '0.017';
+  $Test::Routine::Util::VERSION = '0.018';
 }
 # ABSTRACT: helpful exports for dealing with test routines
+
+
+
+
+
+
+
+
+
+
+
 
 
 use Scalar::Util qw(reftype);
@@ -84,7 +95,7 @@ Test::Routine::Util - helpful exports for dealing with test routines
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 OVERVIEW
 
