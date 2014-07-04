@@ -1,215 +1,212 @@
 use strict;
 use warnings;
 package Test::Routine;
-{
-  $Test::Routine::VERSION = '0.018';
-}
 # ABSTRACT: composable units of assertion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$Test::Routine::VERSION = '0.019';
+#pod =head1 SYNOPSIS
+#pod
+#pod   # mytest.t
+#pod   use Test::More;
+#pod   use Test::Routine;
+#pod   use Test::Routine::Util;
+#pod
+#pod   has fixture => (
+#pod     is   => 'ro',
+#pod     lazy => 1,
+#pod     clearer => 'reset_fixture',
+#pod     default => sub { ...expensive setup... },
+#pod   );
+#pod
+#pod   test "we can use our fixture to do stuff" => sub {
+#pod     my ($self) = @_;
+#pod
+#pod     $self->reset_fixture; # this test requires a fresh one
+#pod
+#pod     ok( $self->fixture->do_things, "do_things returns true");
+#pod     ok( ! $self->fixture->no_op,   "no_op returns false");
+#pod
+#pod     for my $item ($self->fixture->contents) {
+#pod       isa_ok($item, 'Fixture::Entry');
+#pod     }
+#pod   };
+#pod
+#pod   test "fixture was recycled" => sub {
+#pod     my ($self) = @_;
+#pod
+#pod     my $fixture = $self->fixture; # we don't expect a fresh one
+#pod
+#pod     is( $self->fixture->things_done, 1, "we have done one thing already");
+#pod   };
+#pod
+#pod   run_me;
+#pod   done_testing;
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod Test::Routine is a very simple framework for writing your tests as composable
+#pod units of assertion.  In other words: roles.
+#pod
+#pod For a walkthrough of tests written with Test::Routine, see
+#pod L<Test::Routine::Manual::Demo>.
+#pod
+#pod Test::Routine is similar to L<Test::Class> in some ways.  These similarities
+#pod are largely superficial, but the idea of "tests bound together in reusable
+#pod units" is a useful one to understand when coming to Test::Routine.  If you are
+#pod already familiar with Test::Class, it is the differences rather than the
+#pod similarities that will be more important to understand.  If you are not
+#pod familiar with Test::Class, there is no need to understand it prior to using
+#pod Test::Routine.
+#pod
+#pod On the other hand, an understanding of the basics of L<Moose> is absolutely
+#pod essential.  Test::Routine composes tests from Moose classes, roles, and
+#pod attributes.  Without an understanding of those, you will not be able to use
+#pod Test::Routine.  The L<Moose::Manual> is an excellent resource for learning
+#pod Moose, and has links to other online tutorials and documentation.
+#pod
+#pod =head2 The Concepts
+#pod
+#pod =head2 The Basics of Using Test::Routine
+#pod
+#pod There actually isn't much to Test::Routine I<other> than the basics.  It does
+#pod not provide many complex features, instead delegating almost everything to the
+#pod Moose object system.
+#pod
+#pod =head3 Writing Tests
+#pod
+#pod To write a set of tests (a test routine, which is a role), you add C<use
+#pod Test::Routine;> to your package.  C<main> is an acceptable target for turning
+#pod into a test routine, meaning that you may use Test::Routine in your F<*.t>
+#pod files in your distribution.
+#pod
+#pod C<use>-ing Test::Routine will turn your package into a role that composes
+#pod L<Test::Routine::Common>, and will give you the C<test> declarator for adding
+#pod tests to your routine.  Test::Routine::Common adds the C<run_test> method that
+#pod will be called to run each test.
+#pod
+#pod The C<test> declarator is very simple, and will generally be called like this:
+#pod
+#pod   test $NAME_OF_TEST => sub {
+#pod     my ($self) = @_;
+#pod
+#pod     is($self->foo, 123, "we got the foo we expected");
+#pod     ...
+#pod     ...
+#pod   };
+#pod
+#pod This defines a test with a given name, which will be invoked like a method on
+#pod the test object (described below).  Tests are ordered by declaration within the
+#pod file, but when multiple test routines are run in a single test, the ordering of
+#pod the routines is B<undefined>.
+#pod
+#pod C<test> may also be given a different name for the installed method and the
+#pod test description.  This isn't usually needed, but can make things clearer when
+#pod referring to tests as methods:
+#pod
+#pod   test $NAME_OF_TEST_METHOD => { description => $TEST_DESCRIPTION } => sub {
+#pod     ...
+#pod   }
+#pod
+#pod Each test will be run by the C<run_test> method.  To add setup or teardown
+#pod behavior, advice (method modifiers) may be attached to that method.  For
+#pod example, to call an attribute clearer before each test, you could add:
+#pod
+#pod   before run_test => sub {
+#pod     my ($self) = @_;
+#pod
+#pod     $self->clear_some_attribute;
+#pod   };
+#pod
+#pod =head3 Running Tests
+#pod
+#pod To run tests, you will need to use L<Test::Routine::Util>, which will provide
+#pod two functions for running tests: C<run_tests> and C<run_me>.  The former is
+#pod given a set of packages to compose and run as tests.  The latter runs the
+#pod caller, assuming it to be a test routine.
+#pod
+#pod C<run_tests> can be called in several ways:
+#pod
+#pod   run_tests( $desc, $object );
+#pod
+#pod   run_tests( $desc, \@packages, $arg );
+#pod
+#pod   run_tests( $desc, $package, $arg );  # equivalent to ($desc, [$pkg], $arg)
+#pod
+#pod In the first case, the object is assumed to be a fully formed, testable object.
+#pod In other words, you have already created a class that composes test routines
+#pod and have built an instance of it.
+#pod
+#pod In the other cases, C<run_tests> will produce an instance for you.  It divides
+#pod the given packages into classes and roles.  If more than one class was given,
+#pod an exception is thrown.  A new class is created subclassing the given class and
+#pod applying the given roles.  If no class was in the list, Moose::Object is used.
+#pod The new class's C<new> is called with the given C<$arg> (if any).
+#pod
+#pod The composition mechanism makes it easy to run a test routine without first
+#pod writing a class to which to apply it.  This is what makes it possible to write
+#pod your test routine in the C<main> package and run it directly from your F<*.t>
+#pod file.  The following is a valid, trivial use of Test::Routine:
+#pod
+#pod   use Test::More;
+#pod   use Test::Routine;
+#pod   use Test::Routine::Util;
+#pod
+#pod   test demo_test => sub { pass("everything is okay") };
+#pod
+#pod   run_tests('our tests', 'main');
+#pod   done_testing;
+#pod
+#pod In this circumstance, though, you'd probably use C<run_me>, which runs the
+#pod tests in the caller.  You'd just replace the C<run_tests> line with
+#pod C<< run_me; >>.  A description for the run may be supplied, if you like.
+#pod
+#pod Each call to C<run_me> or C<run_tests> generates a new instance, and you can
+#pod call them as many times, with as many different arguments, as you like.  Since
+#pod Test::Routine can't know how many times you'll call different test routines,
+#pod you are responsible for calling C<L<done_testing|Test::More/done_testing>> when
+#pod you're done testing.
+#pod
+#pod =head4 Running individual tests
+#pod
+#pod If you only want to run a subset of the tests, you can set the
+#pod C<TEST_METHOD> environment variable to a regular expression that matches
+#pod the names of the tests you want to run.
+#pod
+#pod For example, to run just the test named C<customer profile> in the
+#pod C<MyTests> class.
+#pod
+#pod   use Test::More;
+#pod   use Test::Routine::Util;
+#pod
+#pod   $ENV{TEST_METHOD} = 'customer profile';
+#pod   run_tests('one test', 'MyTests');
+#pod   done_testing;
+#pod
+#pod To run all tests with C<customer> in the name:
+#pod
+#pod   use Test::More;
+#pod   use Test::Routine::Util;
+#pod
+#pod   $ENV{TEST_METHOD}= '.*customer.*';
+#pod   run_tests('some tests', 'MyTests');
+#pod   done_testing;
+#pod
+#pod If you specify an invalid regular expression, your tests will not be
+#pod run:
+#pod
+#pod   use Test::More;
+#pod   use Test::Routine::Util
+#pod
+#pod   $ENV{TEST_METHOD} = 'C++'
+#pod   run_tests('invalid', 'MyTests');
+#pod   done_testing;
+#pod
+#pod When you run it:
+#pod
+#pod       1..0
+#pod       # No tests run!
+#pod   not ok 1 - No tests run for subtest "invalid"
+#pod
+#pod =cut
 
 use Moose::Exporter;
 
@@ -312,7 +309,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 

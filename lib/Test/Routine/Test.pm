@@ -1,20 +1,18 @@
 package Test::Routine::Test;
-{
-  $Test::Routine::Test::VERSION = '0.018';
-}
+# ABSTRACT: a test method in a Test::Routine role
+$Test::Routine::Test::VERSION = '0.019';
 use Moose;
 extends 'Moose::Meta::Method';
-# ABSTRACT: a test method in a Test::Routine role
 
 with 'Test::Routine::Test::Role';
 
-
-
-
-
-
-
-
+#pod =head1 OVERVIEW
+#pod
+#pod Test::Routine::Test is a very simple subclass of L<Moose::Meta::Method>, used
+#pod primarily to identify which methods in a class are tests.  It also has
+#pod attributes used for labeling and ordering test runs.
+#pod
+#pod =cut
 
 1;
 
@@ -30,7 +28,7 @@ Test::Routine::Test - a test method in a Test::Routine role
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 OVERVIEW
 

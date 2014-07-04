@@ -1,20 +1,18 @@
 package Test::Routine::Runner;
-{
-  $Test::Routine::Runner::VERSION = '0.018';
-}
-use Moose;
 # ABSTRACT: tools for running Test::Routine tests
+$Test::Routine::Runner::VERSION = '0.019';
+use Moose;
 
-
-
-
-
-
-
-
-
-
-
+#pod =head1 OVERVIEW
+#pod
+#pod A Test::Routine::Runner takes a callback for building test instances, then uses
+#pod it to build instances and run the tests on it.  The Test::Routine::Runner
+#pod interface is still undergoing work, but the Test::Routine::Util exports for
+#pod running tests, descibed in L<Test::Routine|Test::Routine/Running Tests>, are
+#pod more stable.  Please use those instead, unless you are willing to deal with
+#pod interface breakage.
+#pod
+#pod =cut
 
 use Carp qw(confess croak);
 use Scalar::Util qw(reftype);
@@ -131,7 +129,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 OVERVIEW
 

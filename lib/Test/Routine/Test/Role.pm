@@ -1,8 +1,6 @@
 package Test::Routine::Test::Role;
-{
-  $Test::Routine::Test::Role::VERSION = '0.018';
-}
 # ABSTRACT: role providing test attributes
+$Test::Routine::Test::Role::VERSION = '0.019';
 use Moose::Role;
 
 has description => (
@@ -34,7 +32,7 @@ Test::Routine::Test::Role - role providing test attributes
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 AUTHOR
 

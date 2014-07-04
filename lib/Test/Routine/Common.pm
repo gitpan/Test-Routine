@@ -1,16 +1,14 @@
 package Test::Routine::Common;
-{
-  $Test::Routine::Common::VERSION = '0.018';
-}
-use Moose::Role;
 # ABSTRACT: a role composed by all Test::Routine roles
+$Test::Routine::Common::VERSION = '0.019';
+use Moose::Role;
 
-
-
-
-
-
-
+#pod =head1 OVERVIEW
+#pod
+#pod Test::Routine::Common provides the C<run_test> method described in L<the docs
+#pod on writing tests in Test::Routine|Test::Routine/Writing Tests>.
+#pod
+#pod =cut
 
 use Test::More ();
 
@@ -37,7 +35,7 @@ Test::Routine::Common - a role composed by all Test::Routine roles
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 OVERVIEW
 

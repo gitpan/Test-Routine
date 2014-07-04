@@ -1,22 +1,19 @@
 use strict;
 use warnings;
 package Test::Routine::Util;
-{
-  $Test::Routine::Util::VERSION = '0.018';
-}
 # ABSTRACT: helpful exports for dealing with test routines
-
-
-
-
-
-
-
-
-
-
-
-
+$Test::Routine::Util::VERSION = '0.019';
+#pod =head1 OVERVIEW
+#pod
+#pod Test::Routine::Util is documented in L<the Test::Routine docs on running
+#pod tests|Test::Routine/Running Tests>.  Please consult those for more information.
+#pod
+#pod Both C<run_tests> and C<run_me> are simple wrappers around the process of
+#pod composing given Test::Routine roles into a class and instance using
+#pod L<Test::Routine::Compositor>, creating a L<Test::Routine::Runner> object and
+#pod telling it to execute the tests on the test instance.
+#pod
+#pod =cut
 
 use Scalar::Util qw(reftype);
 
@@ -95,7 +92,7 @@ Test::Routine::Util - helpful exports for dealing with test routines
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 OVERVIEW
 
