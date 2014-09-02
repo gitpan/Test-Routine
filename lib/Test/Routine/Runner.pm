@@ -1,6 +1,6 @@
 package Test::Routine::Runner;
 # ABSTRACT: tools for running Test::Routine tests
-$Test::Routine::Runner::VERSION = '0.019';
+$Test::Routine::Runner::VERSION = '0.020';
 use Moose;
 
 #pod =head1 OVERVIEW
@@ -129,7 +129,7 @@ Test::Routine::Runner - tools for running Test::Routine tests
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 OVERVIEW
 

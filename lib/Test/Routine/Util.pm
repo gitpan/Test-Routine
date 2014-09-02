@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine::Util;
 # ABSTRACT: helpful exports for dealing with test routines
-$Test::Routine::Util::VERSION = '0.019';
+$Test::Routine::Util::VERSION = '0.020';
 #pod =head1 OVERVIEW
 #pod
 #pod Test::Routine::Util is documented in L<the Test::Routine docs on running
@@ -92,7 +92,7 @@ Test::Routine::Util - helpful exports for dealing with test routines
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 OVERVIEW
 

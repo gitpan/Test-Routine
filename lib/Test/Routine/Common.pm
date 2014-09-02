@@ -1,6 +1,6 @@
 package Test::Routine::Common;
 # ABSTRACT: a role composed by all Test::Routine roles
-$Test::Routine::Common::VERSION = '0.019';
+$Test::Routine::Common::VERSION = '0.020';
 use Moose::Role;
 
 #pod =head1 OVERVIEW
@@ -35,7 +35,7 @@ Test::Routine::Common - a role composed by all Test::Routine roles
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 OVERVIEW
 

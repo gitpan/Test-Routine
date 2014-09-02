@@ -50,7 +50,8 @@ sub pmver {
 
 eval { $v .= pmver('Carp','any version') };
 eval { $v .= pmver('Class::Load','any version') };
-eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
+eval { $v .= pmver('ExtUtils::MakeMaker','any version') };
+eval { $v .= pmver('Math::Trig','any version') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Exporter','any version') };
 eval { $v .= pmver('Moose::Meta::Class','any version') };

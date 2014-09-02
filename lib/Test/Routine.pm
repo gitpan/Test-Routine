@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Routine;
 # ABSTRACT: composable units of assertion
-$Test::Routine::VERSION = '0.019';
+$Test::Routine::VERSION = '0.020';
 #pod =head1 SYNOPSIS
 #pod
 #pod   # mytest.t
@@ -289,6 +289,9 @@ sub test {
   Carp::croak "can't have two tests with the same name ($name)"
     if $class->get_method($name);
 
+  Carp::croak "there's already a subroutine named $name in $caller"
+    if $caller->can($name);
+
   Carp::croak "can't name a test after a Moose::Object method ($name)"
     if Moose::Object->can($name);
 
@@ -309,7 +312,7 @@ Test::Routine - composable units of assertion
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 

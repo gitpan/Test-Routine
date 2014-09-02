@@ -3,14 +3,15 @@ abstract: 'composable units of assertion'
 author:
   - 'Ricardo Signes <rjbs@cpan.org>'
 build_requires:
+  Math::Trig: '0'
   Test::Builder::Tester: '0'
   Test::Fatal: '0'
   Test::Moose: '0'
   Test::More: '0.96'
 configure_requires:
-  ExtUtils::MakeMaker: '6.30'
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520'
+generated_by: 'Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142060'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -40,11 +41,15 @@ resources:
   bugtracker: https://github.com/rjbs/Test-Routine/issues
   homepage: https://github.com/rjbs/Test-Routine
   repository: https://github.com/rjbs/Test-Routine.git
-version: '0.019'
+version: '0.020'
 x_Dist_Zilla:
   perl:
-    version: '5.021001'
+    version: '5.021003'
   plugins:
+    -
+      class: inc::BuildDemo
+      name: =inc::BuildDemo
+      version: ~
     -
       class: Dist::Zilla::Plugin::Git::GatherDir
       config:
@@ -61,7 +66,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::CheckExtraTests
       name: '@Filter/CheckExtraTests'
-      version: '0.021'
+      version: '0.022'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -73,7 +78,7 @@ x_Dist_Zilla:
           phase: build
           skip: []
       name: '@Filter/RJBS-Outdated'
-      version: '0.023'
+      version: '0.024'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -84,58 +89,58 @@ x_Dist_Zilla:
           phase: release
           skip: []
       name: '@Filter/CPAN-Outdated'
-      version: '0.023'
+      version: '0.024'
     -
       class: Dist::Zilla::Plugin::PruneCruft
       name: '@Filter/@Filter/PruneCruft'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::ManifestSkip
       name: '@Filter/@Filter/ManifestSkip'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::MetaYAML
       name: '@Filter/@Filter/MetaYAML'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::License
       name: '@Filter/@Filter/License'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::Readme
       name: '@Filter/@Filter/Readme'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::ExecDir
       name: '@Filter/@Filter/ExecDir'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::ShareDir
       name: '@Filter/@Filter/ShareDir'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::Manifest
       name: '@Filter/@Filter/Manifest'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::TestRelease
       name: '@Filter/@Filter/TestRelease'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::ConfirmRelease
       name: '@Filter/@Filter/ConfirmRelease'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::UploadToCPAN
       name: '@Filter/@Filter/UploadToCPAN'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::MakeMaker
       config:
         Dist::Zilla::Role::TestRunner:
           default_jobs: 9
       name: '@Filter/MakeMaker'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::Git::NextVersion
       config:
@@ -150,19 +155,19 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Filter/PkgVersion'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Filter/MetaConfig'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::MetaJSON
       name: '@Filter/MetaJSON'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::NextRelease
       name: '@Filter/NextRelease'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::Test::ChangesHasContent
       name: '@Filter/Test::ChangesHasContent'
@@ -170,7 +175,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::PodSyntaxTests
       name: '@Filter/PodSyntaxTests'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::ReportVersions::Tiny
       name: '@Filter/ReportVersions::Tiny'
@@ -182,7 +187,7 @@ x_Dist_Zilla:
           phase: test
           type: requires
       name: '@Filter/TestMoreWithSubtests'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::PodWeaver
       config:
@@ -266,7 +271,7 @@ x_Dist_Zilla:
               name: '@RJBS/List'
               version: '4.006'
       name: '@Filter/PodWeaver'
-      version: '4.005'
+      version: '4.006'
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Filter/GithubMeta'
@@ -309,7 +314,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: '0.019'
+          tag: '0.020'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
@@ -332,7 +337,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::AutoPrereqs
       name: AutoPrereqs
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:
@@ -340,49 +345,45 @@ x_Dist_Zilla:
           phase: runtime
           type: requires
       name: Prereqs
-      version: '5.019'
-    -
-      class: inc::BuildDemo
-      name: =inc::BuildDemo
-      version: ~
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::PruneFiles
       name: PruneFiles
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':IncModules'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':TestFiles'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ExecFiles'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':ShareFiles'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':MainModule'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':AllFiles'
-      version: '5.019'
+      version: '5.020'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':NoFiles'
-      version: '5.019'
+      version: '5.020'
   zilla:
     class: Dist::Zilla::Dist::Builder
     config:
       is_trial: '0'
-    version: '5.019'
+    version: '5.020'
